@@ -1,0 +1,28 @@
+<div class="form-group col-md-4">
+  <input type="text" class="form-control" placeholder="Enter Keyword for filter result" [(ngModel)]="searchedKeyword">
+</div>
+<p *ngIf="!hotels"><em>Loading...</em></p>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="hotels">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Price</th>
+      <th>Rating</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let hotel of hotels| filter:searchedKeyword">
+      <td>{{ hotel.hotelId }}</td>
+      <td>{{ hotel.name }}</td>
+      <td>{{ hotel.address }}</td>
+      <td>{{ hotel.price }}</td>
+      <td>
+          <div *ngFor="let rate of numSequence(hotel.rating)" style="width:15%; float:left">
+            <span class='fa fa-star checked'></span>
+          </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
